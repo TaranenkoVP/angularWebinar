@@ -1,0 +1,39 @@
+
+<h4>Name: {{name}}  Price: {{price}} Category: {{Categories}} IsAvailable: {{isAvailable}}</h4>
+<h2>Ingredients</h2>
+<ul>
+  <li *ngFor = "let ingredient of ingredients">
+    <h2><a>{{ingredient}}</a></h2>
+  </li>
+</ul>
+<h2>equivalents</h2>
+<ul>
+    <li *ngFor = "let equivalent of equivalents">
+      <h2><a>{{equivalent}}</a></h2>
+    </li>
+</ul>
+
+<button (click)="onBuy()">Buy</button>`
+
+<h1>From product service</h1>
+
+<ul>
+    <li *ngFor = "let product of products">
+        <h4>Name: {{product.name}}  Price: {{product.price}} Category: {{product.category}} IsAvailable: {{product.isAvailable}}</h4>
+        <h2>ingredients</h2>
+        <ul>
+          <li *ngFor = "let ingredient of product.ingredients">
+            <h2><a>{{ingredient}}</a></h2>
+          </li>
+        </ul>
+        <h2>equivalents</h2>
+        <ul>
+            <li *ngFor = "let equivalent of product.equivalents">
+              <h2><a>{{equivalent}}</a></h2>
+            </li>
+        </ul>
+    </li>
+</ul>
+<app-cart></app-cart>
+
+<!-- .length > 0 -->

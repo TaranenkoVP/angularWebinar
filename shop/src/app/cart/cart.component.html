@@ -1,0 +1,8 @@
+<div *ngIf="purchases.length > 0">
+  <h1>From purchase service</h1>
+  <ul>
+    <li *ngFor = "let purchase of purchases">
+        <h2><a>{{purchase.product.name}}</a></h2>
+      </li>
+    </ul>  
+</div>
