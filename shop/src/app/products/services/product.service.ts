@@ -5,20 +5,14 @@ import { IProduct } from '.././interfaces/iproduct';
 
 @Injectable()
 export class ProductService {
-  private products(): Product[] {
-    return <Product[]>[
-      <Product>{name: 'pepsi', price: 123.09, category: Categories.Drinks, isAvailable: true},
-      <Product>{name: 'cake', price: 71.1, category: Categories.Sweets, isAvailable: false}
-    ];
-  }
-
+  private products: Product[] = [
+    new Product('pepsi', 123.09, Categories.Drinks, true),
+    new Product('cake', 71.1, Categories.Sweets, false)
+  ];
+  
   constructor() { }
 
   getAll(): IProduct[] {
-    return this.products();
-  }
-
-  addNew(){
-
+    return this.products;
   }
 }

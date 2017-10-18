@@ -20,6 +20,6 @@ export class ProductListComponent implements OnInit {
   }
 
   buy(product: IProduct): void{
-    this.cartService.buy(product);
+    this.cartService.buy(product, 1);
   }
 }

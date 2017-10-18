@@ -1,4 +1,4 @@
-<div class="task">
+<div class="task" appHighlight="150%">
     <div>Product: {{item.product.name}}</div>
     <form>
         <div>
@@ -10,7 +10,9 @@
             placeholder="Amount">
         </div>
       </form>
+      <div>Sum: {{sum}}</div>
     <div>
         <button (click)="remove()">Remove</button>
     </div>
+    <p></p>
 </div>

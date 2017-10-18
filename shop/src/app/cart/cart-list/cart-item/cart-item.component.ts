@@ -12,6 +12,8 @@ export class CartItemComponent implements OnInit, DoCheck {
   @Input() item: Cart;
   @Output() onRemove: EventEmitter<Cart> = new EventEmitter<Cart>();
 
+  @Input() sum: number;
+
   differ: any;
     constructor(
       private differs: KeyValueDiffers,
@@ -19,7 +21,16 @@ export class CartItemComponent implements OnInit, DoCheck {
     }
 
   ngOnInit() {
-      this.differ = this.differs.find(this.item).create(this.changeDetector);
+    this.differ = this.differs.find(this.item).create(this.changeDetector);
+  }
+
+  ngDoCheck(): void {
+    const changes = this.differ.diff(this.item);
+
+    if (changes) {
+      console.log(changes);
+      changes.forEachChangedItem(item => this.validateValue('changed', item));
+    }
   }
 
   @HostBinding('class') class = 'red';
@@ -27,33 +38,23 @@ export class CartItemComponent implements OnInit, DoCheck {
   @HostListener('mouseenter', ['$event']) c_onEnter() {
     this.class = 'red'
   }
-
   @HostListener('mouseleave', ['$event']) mouseleave() {
     this.class = 'blue'
   }
 
-  setRed() { this.class = 'red'; }
   setGreen() { this.class = 'green';}
 
-  ngDoCheck(): void {
-  const  changes = this.differ.diff(this.item);
-
-  if (changes) {
-    console.log(changes);
-      changes.forEachChangedItem(item => this.validateValue('changed', item));
-  }
-}
-
-private validateValue(action: string, item): void {
-  if (action === 'changed') {
-    if (item.currentValue <= 0 ){
-      alert("value must be > 0");
-    }
-      
+  private validateValue(action: string, item): void {
+    if (action === 'changed') {
+      if (item.currentValue <= 0 ){
+        alert("value must be > 0");
+      }
+        
       console.log(item.key, action, 'from', item.previousValue, 'to', item.currentValue);
+    }
   }
-}
-remove(): void {
-     this.onRemove.emit(this.item);
+
+  remove(): void {
+      this.onRemove.emit(this.item);
   }
 }
