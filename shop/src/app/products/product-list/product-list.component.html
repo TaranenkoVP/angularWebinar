@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Products</div>
+    <div class="panel-body">
+        <ul *ngFor = "let product of products">
+            <li>Name: {{product.name}}</li>
+            <li>Price: {{product.price}}</li>
+            <li>Category: {{product.category}}</li>
+            <li>IsAvailable: {{product.isAvailable}}</li>
+            <ul>Engredients:
+                <li *ngFor = "let ingredient of product.ingredients">
+                  {{ingredient}}
+                </li>
+            </ul>
+            <ul>Equivalent:
+                <li *ngFor = "let equivalent of product.equivalents"> 
+                  {{equivalent}}
+                </li>
+            </ul>
+          <button class="btn btn-primary" (click)="buy(product);" >Buy</button>
+        </ul>      
+      </div>
+</div>
+
+
