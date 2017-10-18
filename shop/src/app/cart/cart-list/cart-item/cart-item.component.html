@@ -1,0 +1,16 @@
+<div class="task">
+    <div>Product: {{item.product.name}}</div>
+    <form>
+        <div>
+          <label [ngStyle]="{'font-size':'19px', 'font-family':'Verdana'}">Amount</label>
+          <input
+            type="text"
+            [(ngModel)]="item.amount"
+            name="Amount"
+            placeholder="Amount">
+        </div>
+      </form>
+    <div>
+        <button (click)="remove()">Remove</button>
+    </div>
+</div>

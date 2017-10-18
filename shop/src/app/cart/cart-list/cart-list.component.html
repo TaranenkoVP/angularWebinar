@@ -1,0 +1,15 @@
+<div>
+    <p>Cart:</p>
+    <app-cart-item
+        #item.amount
+        *ngFor="let item of cart"
+        [item]="item"
+        (onRemove)="removeCartItem(item)">
+    </app-cart-item>
+    <div *ngIf ="cart.length > 0">
+        <p>SetColor:</p>
+        <button (click)="setRed()">red</button>
+        <button (click)="setGreen()">green</button>
+    </div>
+    
+  </div>
