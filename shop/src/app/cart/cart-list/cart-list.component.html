@@ -14,19 +14,4 @@
     <div *ngIf ="cart.length > 0"> 
         <button (click)="deleteAll()">Clear cart</button>
     </div>
-
-    <form>
-        <div>
-            <label>Config value {{savedNumber}}</label>
-            <input
-            type="number"
-            name="value"
-            [(ngModel)]="value">
-            <button (click)="saveValue(value)">save</button>
-        </div>
-    </form>
-
-    <!-- <div>Constant: {{this.constantsService ? this.constantsService.App}}</div> -->
-    <!-- <div>Generator: {{this.generate()}}</div> -->
-    
-  </div>
+</div>
