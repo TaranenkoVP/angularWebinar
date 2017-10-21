@@ -1,37 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Cart } from '.././models/cart'
-import { IProduct } from '../.././products/interfaces/iproduct'
+import { Cart } from '.././models/cart';
+import { IProduct } from '../.././products/interfaces/iproduct';
 
 @Injectable()
 export class CartService {
-  private cart : Cart[] = [];
+  private cart: Cart[] = [];
+  public lastUpdateDate: Date;
 
-  public buy(product: IProduct, amount: number ): void{
+  public buy(product: IProduct, amount: number ): void {
 
-    let existingProduct = this.cart.find(x => x.product.id == product.id);
-    if (existingProduct){
+    const existingProduct = this.cart.find(x => x.product.id === product.id);
+
+    if (existingProduct) {
       existingProduct.amount += amount;
-    }
-    else{
+    } else {
       this.cart.push(new Cart(product, amount));
     }
+    this.toggleUpdateDate();
   }
 
-  public delete(item: Cart): void{
+  public delete(item: Cart): void {
     const pos = this.cart.indexOf(item);
     this.cart.splice(pos, 1);
+    this.toggleUpdateDate();
   }
 
-  public deleteAll(): void{
+  public deleteAll(): void {
     this.cart = [];
+    this.toggleUpdateDate();
   }
 
-  public getCart(): Cart[]{
+  public getCart(): Cart[] {
     return this.cart;
   }
 
-  public getTotalAmount(): number{
-    let total: number = 0;
+  public getTotalAmount(): number {
+    let total = 0;
 
     this.cart.forEach(element => {
       total += element.amount;
@@ -40,9 +44,9 @@ export class CartService {
     return total;
   }
 
-  public getTotalSum(): number{
-    let total: number = 0;
-    
+  public getTotalSum(): number {
+    let total = 0;
+
     this.cart.forEach(element => {
       total += element.amount * element.product.price;
     });
@@ -51,14 +55,18 @@ export class CartService {
   }
 
   public getTotalSumByProductId(productId: number): number{
-    let total: number = 0;
+    let total = 0;
 
     this.cart.forEach(element => {
-      if (element.product.id == productId){
+      if (element.product.id === productId) {
         total += element.amount * element.product.price;
       }
     });
 
     return total;
+  }
+
+  private toggleUpdateDate(): void {
+    this.lastUpdateDate = new Date();
   }
 }

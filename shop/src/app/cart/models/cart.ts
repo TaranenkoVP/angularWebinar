@@ -1,6 +1,6 @@
 import { IProduct } from '../.././products/interfaces/iproduct';
 
-export class Cart{
+export class Cart {
     static lastId: number;
     product: IProduct;
     amount: number;

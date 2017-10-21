@@ -12,14 +12,14 @@ import { CartService } from '../.././cart/services/cart.service';
 
 export class ProductListComponent implements OnInit {
   products: IProduct[];
-  
+
   constructor(private productService:  ProductService, private cartService: CartService) { }
 
   ngOnInit() {
     this.products = this.productService.getAll();
   }
 
-  buy(product: IProduct): void{
+  buy(product: IProduct): void {
     this.cartService.buy(product, 1);
   }
 }

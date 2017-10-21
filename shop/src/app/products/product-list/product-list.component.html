@@ -3,8 +3,8 @@
     <div class="panel-body">
         <ul *ngFor = "let product of products">
             <li>Name: {{product.name}}</li>
-            <li>Price: {{product.price}}</li>
-            <li>Category: {{product.category}}</li>
+            <li>Price: {{product.price | number:'1.2-2'}} (original value: {{product.price}})</li>
+            <li>Category: {{product.category | uppercase}} (original value:{{product.category}})</li>
             <li>IsAvailable: {{product.isAvailable}}</li>
             <ul>Engredients:
                 <li *ngFor = "let ingredient of product.ingredients">

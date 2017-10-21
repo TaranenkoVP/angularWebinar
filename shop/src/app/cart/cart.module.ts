@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductsModule } from '.././products/products.module';
 import { CartListComponent } from './cart-list/cart-list.component';
-import { CartItemComponent } from './cart-list/cart-item/cart-item.component'
-import { CartService } from './services/cart.service'
-import { HighlightDirective } from './directives/highlight.directive'
+import { CartItemComponent } from './cart-list/cart-item/cart-item.component';
+import { CartService } from './services/cart.service';
+import { HighlightDirective } from './directives/highlight.directive';
+import { OrderByPipe } from './pipes/orderBy';
 
 @NgModule({
   imports: [
@@ -17,11 +18,12 @@ import { HighlightDirective } from './directives/highlight.directive'
   declarations: [
     CartListComponent,
     CartItemComponent,
-    HighlightDirective],
+    HighlightDirective,
+    OrderByPipe],
 
   providers: [CartService],
 
-  exports:[CartListComponent]
+  exports: [CartListComponent]
 
 })
 export class CartModule { }

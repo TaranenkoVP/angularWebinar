@@ -1,12 +1,12 @@
 <div>
-    <p> Cart contains {{getTotalAmount()}} item(s). Total sum:{{getTotalSum()}} </p>
+    <p> Cart contains {{getTotalAmount()}} item(s). Total sum:{{getTotalSum()}}. Last update: {{lastUpdateDate | date:'yyyy-mm-dd HH:mm'}}}}  (original value: {{lastUpdateDate}} </p>
     <div *ngIf ="cart.length > 0"> SetColor:
         <button (click)="setGreen()">green</button>
     </div>
     <p></p>
     <app-cart-item
         #item.amount
-        *ngFor="let item of cart"
+        *ngFor="let item of cart | orderBy : 'name' : 'true'"
         [item]="item"
         (onRemove)="removeCartItem(item)"
         [sum]="this.getTotalSumByProductId(item.product.id)">

@@ -12,12 +12,12 @@ const ConstantsServiceToken = new InjectionToken<any>('title');
   styleUrls: ['./app.component.css'],
   providers : [
     { provide: RANDOM_GENERATOR, useFactory:  GeneratorFactory(5) },
-    { provide: ConstantsServiceToken, useValue: {App: "Angular 4 training", Ver: "v1.0"} }]
+    { provide: ConstantsServiceToken, useValue: {App: 'Angular 4 training', Ver: 'v1.0'} }]
 })
 export class AppComponent implements OnInit {
   configSavedNumber: number;
 
-  constructor(   
+  constructor(
     @Optional() private configService: ConfigOptionsService,
     @Optional() @Inject(RANDOM_GENERATOR)  public randomString: string,
     @Optional() @Inject(ConstantsServiceToken) public title: any, ) {
@@ -26,15 +26,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getConfig();
   }
-  
-  saveValue(value: number): void{
-    if (this.configService){
-      this.configService.addConfig("configSavedNumber", value);
+
+  saveValue(value: number): void {
+    if (this.configService) {
+      this.configService.addConfig('configSavedNumber', value);
       this.getConfig();
     }
   }
 
   private getConfig(): void{
-    this.configSavedNumber = this.configService ? this.configService.getConfig("configSavedNumber") : "100500";
+    this.configSavedNumber = this.configService ? this.configService.getConfig('configSavedNumber') : '100500';
   }
 }

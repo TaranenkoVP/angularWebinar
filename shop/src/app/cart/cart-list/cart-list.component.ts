@@ -6,23 +6,24 @@ import { CartService } from '.././services/cart.service';
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
-  styleUrls: ['./cart-list.component.css'],
+  styleUrls: ['./cart-list.component.css']
 })
 
 export class CartListComponent implements OnInit {
-  @ViewChildren(CartItemComponent) childComponents : QueryList<CartItemComponent>;
+  @ViewChildren(CartItemComponent) childComponents: QueryList<CartItemComponent>;
   @Output() onRemove: EventEmitter<Cart> = new EventEmitter<Cart>();
 
   cart: Array<Cart>;
- 
-  constructor( private cartService: CartService){}
+  lastUpdateDate: Date;
+  constructor( private cartService: CartService) {}
 
   ngOnInit() {
     this.getCart();
+    this.lastUpdateDate = this.cartService.lastUpdateDate || new Date();
   }
 
   setGreen() {
-     this.childComponents.forEach(child => {child.setGreen()});
+     this.childComponents.forEach(child => {child.setGreen(); });
   }
 
   removeCartItem(item: Cart): void {
