@@ -1,2 +1,17 @@
+<h1>{{title.App}} {{title.Ver}}</h1>
+
 <app-product-list></app-product-list>
 <app-cart-list></app-cart-list>
+
+<form>
+    <div>
+        <label>Config value {{configSavedNumber}}</label>
+        <input
+        type="number"
+        name="value"
+        [(ngModel)]="value">
+        <button (click)="saveValue(value)">save</button>
+    </div>
+</form>
+
+<div>Generator: {{randomString}}</div>
